@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Dashboard from "./components/Dashboard";
 import { formatData } from "./utils";
+import Navi from "./Nav";
+import Candlechart from "./components/Candlechart";
 import "./styles.css";
 
 export default function App() {
@@ -101,6 +103,8 @@ export default function App() {
     setpair(e.target.value);
   };
   return (
+    <div className="main">
+            <Navi/>
     <div className="container">
       {
         <select name="currency" value={pair} onChange={handleSelect}>
@@ -114,6 +118,8 @@ export default function App() {
         </select>
       }
       <Dashboard price={price} data={pastData} />
+      <Candlechart price={price} data={pastData} />
+    </div>
     </div>
   );
 }
