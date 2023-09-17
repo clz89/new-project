@@ -253,7 +253,7 @@ useEffect(() => {
 
   return (
     <div className="main">
-            <Navi/>
+            {/*<Navi/>*/}
     <div className="container">
         <span style={{marginBottom:0, marginTop:10, color:"black"}}><b>{pair ? pair : "No coin selected"}</b></span>
         <span><b>{`$${price}`}</b></span>
