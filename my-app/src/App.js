@@ -104,11 +104,11 @@ useEffect(() => {
           .then((res) => res.json())
           .then((data) => (newdata = data));
           newdata["cur"] = curid
+          console.log(newdata.message)
           let idx = []
           if(prices.length<=tickers.length){
             let filtered = tickers.map((tick, i) => {
               if(tick.cur===curid){
-                console.log(curid)
                 idx.push(newdata)
                 if(idx.length>1){
                   let newreturn = {cur: ""}
@@ -141,7 +141,7 @@ useEffect(() => {
       setticker({index: 0, pair: ""})
     }
     
-  }, 300);
+  }, 500);
   return () => clearInterval(interval);
 }, [ticker, prices, tickers.length, tickers])
 
@@ -283,7 +283,6 @@ useEffect(() => {
         {tickers!==null &&
         tickers?.map((tick, i) => {
           let TVtick = tick.cur.slice(-0,-4)
-          console.log(TVtick)
           return(
             <button onClick={e => handleSelect({coinbase: tick.cur, tradingview: `${TVtick}USD`})} className={tick.cur!== pair ? "cur-divs" : "cur-divs cur-highlight"} key={i} value={tick.cur}>
                 
