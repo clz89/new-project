@@ -11,9 +11,9 @@
 .dashboard {
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  height: 70vh;
+  justify-content: center;
+  height: 33vh;
 }
 
 .chart-container {
@@ -29,4 +29,37 @@
   width: 100%;
   height: 10vh;
   background-color: black;
+}
+
+.cur-list {
+  
+  position: relative;
+  height: 30vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cur-divs {
+  min-height: 30px;
+  width: 20vw;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cur-head {
+  margin-left: 0px;
+  min-height: 30px;
+  width: 20vw;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cur-highlight {
+  border: 3px solid rgb(26, 172, 26)
 }
