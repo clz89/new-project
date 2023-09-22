@@ -145,6 +145,56 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, [ticker, prices, tickers.length, tickers])
 
+
+
+    
+  /*useEffect(() => {
+     const data1 = []
+     let newdata = []
+     let retry = []
+    currencies.map((cur, i) => { 
+        
+        setTimeout(() => {
+          let curid=cur.id
+       
+            const apiCall3 = async () => {
+              
+              await fetch(`https://api.exchange.coinbase.com/products/${curid}/ticker`)
+              .then((res) => res.json())
+              .then((data) => (newdata = data));
+              if(!newdata.volume){
+                retry.length = 1
+                return;
+              }
+              newdata["cur"] = curid 
+             data1.push(newdata)  
+             settickers(data1)
+             return;
+              
+          }
+            apiCall3() 
+            if(retry.length===1){
+              retry.length = 0
+              apiCall3() 
+
+            }
+           
+            setticker({index: i+1, pair: curid})
+            
+       
+            
+        }, 100 * (i + 1))
+       
+        });
+       
+       
+    
+  }, [currencies])*/
+  
+  
+  
+
+
   useEffect(() => {
     ws.current.onopen = () => {
     if(price==="0.00"){
@@ -250,6 +300,16 @@ useEffect(() => {
       })
      console.log(newdata2)
   }
+  //let sorted = tickers
+ let sorted = tickers?.sort((a, b) => {
+    if ((a.volume * a.price) < (b.volume * b.price)) {
+      return 1;
+    }
+    if ((a.volume * a.price) > (b.volume * b.price)) {
+      return -1;
+    }
+    return 0;
+  });
 
   return (
     <div className="main">
@@ -281,8 +341,8 @@ useEffect(() => {
       <div>
        <div className="cur-list">
         {tickers!==null &&
-        tickers?.map((tick, i) => {
-          let TVtick = tick.cur.slice(-0,-4)
+        sorted?.map((tick, i) => {
+          let TVtick = tick?.cur?.slice(-0,-4)
           return(
             <button onClick={e => handleSelect({coinbase: tick.cur, tradingview: `${TVtick}USD`})} className={tick.cur!== pair ? "cur-divs" : "cur-divs cur-highlight"} key={i} value={tick.cur}>
                 
